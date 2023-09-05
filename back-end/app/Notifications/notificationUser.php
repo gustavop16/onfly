@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class notificationUser extends Notification
+class notificationUser extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -39,6 +39,7 @@ class notificationUser extends Notification
     {
         return (new MailMessage)
             ->subject('Notificação')
+            ->greeting('Olá '.$this->user->name)
             ->line('Despesa cadastrada!');
     }
 
