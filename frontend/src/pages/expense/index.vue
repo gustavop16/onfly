@@ -42,9 +42,7 @@ export default defineComponent({
     const expenses = ref<ExpenseModel[]>([]);
 
     async function loadData() {
-
-      /*Number(store.state.user?.id*/
-      const expenseResponse = await ExpenseService.list(1);
+      const expenseResponse = await ExpenseService.list(Number(store.state.user?.id));
       expenses.value = expenseResponse.data.data;
     }
 
