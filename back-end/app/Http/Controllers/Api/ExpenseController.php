@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExpenseRequest;
 use App\Http\Resources\ExpenseResource;
+use App\Notifications\notificationUser;
 use App\Repositories\ExpenseRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,6 +39,8 @@ class ExpenseController extends Controller
         try {
             DB::beginTransaction();
                 $expense = $this->expenseRepository()->create($input);
+                $user = $expense->user()->first();
+                $user->notify(new notificationUser($user));
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();

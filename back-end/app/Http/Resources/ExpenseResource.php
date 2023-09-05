@@ -19,7 +19,7 @@ class ExpenseResource extends JsonResource
             'description' => $this->description,
             'date'  => $this->date,
             'value' => $this->value,
-            'user'  => $this->user_id
+            'user'  => new UserResource($this->user()->first())
         ];
     }
 }
