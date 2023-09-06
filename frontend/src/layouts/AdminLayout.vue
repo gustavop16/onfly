@@ -20,19 +20,18 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import authenticationService from '../shared/api/services/authentication.service';
 
 export default defineComponent({
   name: 'AdminLayout',
-
-  components: {
-
-  },
-
   setup () {
    
+    const router = useRouter();
+
     function logout() {
       authenticationService.signOut();
+      router.push('/')
     }
 
     return { logout};

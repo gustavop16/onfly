@@ -23,9 +23,11 @@ Route::post('/auth/login',   [AuthController::class, 'login'])->name('login');
 Route::middleware('apiJwt')->group(function () {
     Route::get('/auth/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::resource('expenses', ExpenseController::class)->except(['create', 'index', 'edit']);
-    Route::get('/expenses/{user_id}/user', [ExpenseController::class, 'getByUser'])->name('expenses.user');
+    
 });
+
+Route::resource('expenses', ExpenseController::class)->except(['create', 'index', 'edit']);
+Route::get('/expenses/{user_id}/user', [ExpenseController::class, 'getByUser'])->name('expenses.user');
 
 
 Route::middleware('apiJwt')->get('/user', function (Request $request) {

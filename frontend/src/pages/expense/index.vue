@@ -1,5 +1,7 @@
 <template>
   <q-page class="row justify-evenly">
+
+    
    
     <q-list bordered class="rounded-borders" style="width: 100%">
       <q-item-label header>DESPESAS 
@@ -42,7 +44,8 @@ export default defineComponent({
     const expenses = ref<ExpenseModel[]>([]);
 
     async function loadData() {
-      const expenseResponse = await ExpenseService.list(Number(store.state.user?.id));
+      const userId =  Number(store.state.user?.id);
+      const expenseResponse = await ExpenseService.list(userId);
       expenses.value = expenseResponse.data.data;
     }
 
@@ -51,11 +54,11 @@ export default defineComponent({
       ExpenseService
         .delete(expenseId)
         .then(() => {
-          console.log({ title: 'Despesa excluída com sucesso' });
+          alert('Despesa excluída com sucesso');
           loadData();
         })
-        .catch(() => {
-          console.log('Ocorreu um erro ao salvar os dados');
+        .catch((err) => {
+          alert('Ocorreu um erro ao salvar os dados - '+ err);
         });
     }
     loadData();

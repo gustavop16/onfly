@@ -15,7 +15,7 @@ class ExpensePolicy
         //
     }
 
-    public function belongs($user, $expense){
-        return ($user->id === $expense->user_id);
+    public function belongs(User $user, Expense $expense){
+        return ((int)$user->id === (int)$expense->user_id);
     }
 }

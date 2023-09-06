@@ -2,6 +2,9 @@
 
 A Quasar Project
 
+### Teste
+* Faça em Vue.js uma tela de gestão de usuários (CRUD) utilizando sua API.
+
 ## Install the dependencies
 ```bash
 yarn
@@ -20,5 +23,17 @@ quasar dev
 quasar build
 ```
 
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+# Usuários para acesso
+
+usuario1@teste.com
+abcd1234 
+
+usuario2@teste.com
+abcd1234
+
+usuario3@teste.com
+abcd1234
+
+# Autor 
+
+* Gustavo Pereira 

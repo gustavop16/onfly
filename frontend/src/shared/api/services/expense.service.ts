@@ -34,11 +34,7 @@ class ExpenseService {
     data: CreateExpenseDTO
   ): Promise<AxiosResponse<{ data: CreateExpenseDTO }>> {
     const url = `/expenses/${expenseId}`;
-
     return api.put<{ data: ExpenseModel }>(url, data, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
     });
   }
 

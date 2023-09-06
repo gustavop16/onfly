@@ -77,6 +77,8 @@ class AuthenticationService {
     store.dispatch('setAuth', true);
     store.dispatch('setUser', payload.user);
 
+    this.setWithExpiry("user", payload.user);
+    
     this.setWithExpiry("token", payload.access_token);
     this.setWithExpiry("token_type", payload.token_type);
 

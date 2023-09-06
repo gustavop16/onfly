@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExpenseRequest;
+use App\Http\Requests\UpdateExpenseRequest;
 use App\Http\Resources\ExpenseResource;
 use App\Notifications\notificationUser;
 use App\Repositories\ExpenseRepository;
@@ -49,7 +50,7 @@ class ExpenseController extends Controller
         return new ExpenseResource($expense);
     }
 
-    public function update(ExpenseRequest $request, string $id)
+    public function update(UpdateExpenseRequest $request, int $id)
     {
         $expense = $this->expenseRepository()->getById($id);  
 
@@ -68,12 +69,13 @@ class ExpenseController extends Controller
             DB::rollBack();
             return response()->json(['error' => $exception->getMessage()], 400, ['X-Header-One' => 'Header Value']); 
         }
-        return new ExpenseResource($response);
+        return $response;
     }
 
     public function destroy(int $id)
     {
-        $expense = $this->expenseRepository()->getById($id);  
+        $expense = $this->expenseRepository()->getById($id); 
+        
         $this->authorize('belongs',$expense);  
         
         if (empty($expense)) {
